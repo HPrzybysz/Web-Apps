@@ -1,26 +1,33 @@
-const http = require('http')
+const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const  url = require('url');
+const url = require('url');
+const mime = require('mime');
 
 const requestListener = (req, res) => {
-    const url = req.url;
     const parsedUrl = url.parse(req.url, true);
+
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
 
-    if (url === '/1') {
-        // Strona główna
+    if (parsedUrl.pathname === '/') {
+
+
         res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
         res.end('Strona główna');
-    } else if (url === '/2') {
+
+    } else if (parsedUrl.pathname === '/json') {
+
         res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
         const jsonResponse = {
-            name: "John Doe",
-            city: "Radom",
-            state: "powodz"
+            message: 'To jest przykładowy dokument JSON',
+            data: [1, 2, 3, 4],
+            status: 'sukces'
         };
         res.end(JSON.stringify(jsonResponse));
-    } else if (url === '/3') {
+
+    } else if (parsedUrl.pathname === '/html') {
+
+
         res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
         res.end(`
             <!DOCTYPE html>
@@ -28,50 +35,78 @@ const requestListener = (req, res) => {
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Strona</title>
+                <title>Dynamiczny HTML</title>
             </head>
             <body>
-                <h1>Styrta sie pali</h1>
-                <p>Łączna 43</p>
+                <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias consequuntur culpa cum eius et in quasi qui voluptate. Commodi iste officia recusandae rem suscipit tempore. Ab distinctio facilis iste nostrum!</p>
             </body>
             </html>
         `);
-    } else if (url === '/4') {
+
+    } else if (parsedUrl.pathname === '/html-file') {
+
+
         const filePath = path.join(__dirname, 'index.html');
         fs.readFile(filePath, 'utf-8', (err, data) => {
             if (err) {
                 res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
-                res.end('Błąd serwera');
+                res.end('Błąd serwera: Nie można odczytać pliku HTML.');
             } else {
                 res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
                 res.end(data);
             }
         });
-    } else if(url === '/get_params'){
-        const queryParams = parsedUrl.query();
-        console.log(queryParams);
-        const timestamp = Date().now();
-        const fileName = `params/${timestamp}.json`;
+
+    } else if (parsedUrl.pathname === '/get_params') {
+
+
+        const queryParams = parsedUrl.query;
+        console.log('Otrzymane parametry:', queryParams);
+
+        const timestamp = Date.now();
+        const fileName = `params_${timestamp}.json`;
         const filePath = path.join(__dirname, fileName);
 
-        fs.writeFile(filePath, JSON.stringify(requestListener(queryParams, null, 2), (err) =>{
+
+        fs.writeFile(filePath, JSON.stringify(queryParams, null, 2), (err) => {
+
             if (err) {
-                console.log("blad", err);
-                res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
-                res.end(JSON.stringify({error: 'blad serwera'}));
-            }else {
-                res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
-                res.end(JSON.stringify({ok: 'ok'}));
+
+
+                console.error('Błąd podczas zapisu pliku:', err);
+                res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
+                res.end(JSON.stringify({ error: 'Błąd serwera' }));
+
+            } else {
+
+
+                res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+                res.end(JSON.stringify({ ok: 'ok' }));
+
             }
-        }));
+        });
 
     } else {
+
+        const filePath = path.join(__dirname, 'assets', pathname);
+
+        fs.stat(filePath, (err, stats) => {
+            if (err || !stats.isFile()) {
+                res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+                res.end(JSON.stringify(stats, null, 2));
+            }
+        })
+
+
         res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
         res.end('404: Strona nie znaleziona');
     }
 };
 
+
 const server = http.createServer(requestListener);
+
 
 const PORT = 3000;
 server.listen(PORT, () => {
