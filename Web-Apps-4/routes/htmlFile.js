@@ -4,8 +4,8 @@ const path = require('path');
 const router = express.Router();
 
 router.get('/', function (req, res) {
-    // const filePath = path.join(__dirname, 'views/htmlin.html');
-    fs.readFile('views/htmlin.html', 'utf-8', (err, data) => {
+    const filePath = path.join(__dirname, './views/html.html');
+    fs.readFile(filePath, 'utf-8', (err, data) => {
         if (err) {
             res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
             res.end('Błąd serwera: Nie można odczytać pliku HTML.');
