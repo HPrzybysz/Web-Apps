@@ -2,7 +2,9 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 
+
 const app = express();
+app.use(express.static(path.join(__dirname, 'static')));
 
 app.get('/', (req, res) => {
     fs.readFile('./sites/main.html', 'utf-8', (err, data) => {
