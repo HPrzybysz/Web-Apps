@@ -4,6 +4,9 @@ const fs = require('fs');
 
 
 const app = express();
+
+
+
 app.use(express.static(path.join(__dirname, 'static')));
 
 app.get('/', (req, res) => {

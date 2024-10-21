@@ -11,6 +11,7 @@
       <change beforePath="$PROJECT_DIR$/sites/Kontakt.html" beforeDir="false" afterPath="$PROJECT_DIR$/sites/Kontakt.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sites/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/sites/main.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sites/oferta.html" beforeDir="false" afterPath="$PROJECT_DIR$/sites/oferta.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +64,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.18034.50" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-WS-242.21829.149" />
       </set>
     </attachedChunks>
   </component>
@@ -79,6 +80,7 @@
       <workItem from="1729148125860" duration="44000" />
       <workItem from="1729148170935" duration="317000" />
       <workItem from="1729148502937" duration="1601000" />
+      <workItem from="1729510094466" duration="1908000" />
     </task>
     <servers />
   </component>
