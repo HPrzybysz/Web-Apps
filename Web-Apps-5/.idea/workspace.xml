@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa70c31e-5fc6-4669-a21e-e2864ef8358c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Web-Apps-0/Main.java" beforeDir="false" />
+    <list default="true" id="aa70c31e-5fc6-4669-a21e-e2864ef8358c" name="Changes" comment="fixing push">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sites/About.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sites/Kontakt.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sites/main.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sites/oferta.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/style.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +24,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "HPrzybysz"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/HPrzybysz/Web-Apps.git",
+    "accountId": "dfa3b81f-f7d9-4a01-aa53-9ef91504c2a2"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -86,11 +89,33 @@
       <workItem from="1729148170935" duration="317000" />
       <workItem from="1729148502937" duration="1601000" />
       <workItem from="1729510094466" duration="1908000" />
-      <workItem from="1729698822116" duration="8681000" />
+      <workItem from="1729698822116" duration="9064000" />
     </task>
+    <task id="LOCAL-00001" summary="Reworked the site and finished it">
+      <option name="closed" value="true" />
+      <created>1729712432635</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1729712432635</updated>
+    </task>
+    <task id="LOCAL-00002" summary="fixing push">
+      <option name="closed" value="true" />
+      <created>1729712595743</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1729712595743</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Reworked the site and finished it" />
+    <MESSAGE value="fixing push" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing push" />
   </component>
 </project>
