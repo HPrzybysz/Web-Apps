@@ -66,12 +66,12 @@ app.post('/kontakt', (req, res) => {
 
 app.get('/api/contact-messages', (req, res) => {
     const query = 'SELECT * FROM messages';
-    db.query(query, (err, result) => {
+    db.query(query, (err, results) => {
         if (err){
             console.error('Error while retriving data', err);
             res.status(500).send('Server error');
         }else{
-            res.json(result);
+            res.json(results);
         }
     })
 })
@@ -79,14 +79,14 @@ app.get('/api/contact-messages', (req, res) => {
 app.get('/api/messages/:id', (req, res) => {
     const id = req.params.id;
     const query = 'SELECT * FROM messages WHERE id = ?';
-    db.query(query, [id], (err, result) => {
+    db.query(query, [id], (err, results) => {
         if (err){
             console.error('Error while retriving data', err);
             res.status(500).send('Server error');
-        }else if(result.length === 0){
+        }else if(results.length === 0){
             res.status(404).send('No record found');
         }else{
-            res.join(results[0]);
+            res.json(results[0]);
         }
     })
 })
