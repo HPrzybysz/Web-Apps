@@ -1,0 +1,6 @@
+CREATE DATABASE blog_app;
+USE blog_app;
+
+CREATE USER 'blog_user'@'localhost' IDENTIFIED BY 'secure_password';
+GRANT ALL PRIVILEGES ON blog_app.* TO 'blog_user'@'localhost';
+FLUSH PRIVILEGES;
