@@ -1,6 +1,19 @@
+Database query:
+
 CREATE DATABASE blog_app;
 USE blog_app;
 
 CREATE USER 'blog_user'@'localhost' IDENTIFIED BY 'secure_password';
 GRANT ALL PRIVILEGES ON blog_app.* TO 'blog_user'@'localhost';
 FLUSH PRIVILEGES;
+
+/////////////////////////////////////////////////////////
+migration:
+
+npx prisma migrate dev --name init
+
+
+/////////////////////////////////////////////////////////
+.env config:
+
+DATABASE_URL="mysql://blog_user:secure_password@localhost:3306/blog_app"
