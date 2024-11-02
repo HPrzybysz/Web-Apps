@@ -9,31 +9,31 @@ generator client {
 }
 
 datasource db {
-    provider = "mysql"
-    url = env("DATABASE_URL")
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
-model Post{
-  id Int @id @default(autoincrement())
-  titel String
-  content String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model Post {
+  id         Int       @id @default(autoincrement())
+  title      String
+  content    String
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
   categoryId Int
-  comments Comment[]
-  category Category @relation(fields: [categoryId], references: [id])
+  comments   Comment[]
+  category   Category  @relation(fields: [categoryId], references: [id])
 }
 
-model Category{
-  id Int @id @default(autoincrement())
-  name String @unique
+model Category {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
   posts Post[]
 }
 
-model Comment{
-  id Int @id @default(autoincrement())
-  content String
+model Comment {
+  id        Int      @id @default(autoincrement())
+  content   String
   createdAt DateTime @default(now())
-  postId Int
-  post Post @relation(fields: [postId], references: [id])
+  postId    Int
+  post      Post     @relation(fields: [postId], references: [id])
 }
