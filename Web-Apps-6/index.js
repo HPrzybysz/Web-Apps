@@ -3,6 +3,7 @@ const { PrismaClient } = require('@prisma/client');
 
 const app = express();
 const prisma = new PrismaClient();
+const router = express.Router()
 
 app.use(express.json());
 
@@ -26,6 +27,14 @@ app.post('/posts', async (req, res) => {
     });
     res.json(post);
 });
+
+router.get('/addCategory', async (req, res) => {
+    const Category = await prisma.category.create({
+        data: {
+            name: req.body.name,
+        },
+    })
+})
 
 
 const PORT = process.env.PORT || 3000;
