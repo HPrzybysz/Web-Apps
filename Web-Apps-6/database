@@ -17,3 +17,55 @@ npx prisma migrate dev --name init
 .env config:
 
 DATABASE_URL="mysql://blog_user:secure_password@localhost:3306/blog_app"
+
+/////////////////////////////////////////////////////////
+
+Example data for:
+
+CategoryRouter:
+create:
+http://localhost:3000/categories
+JSON:
+    {
+        "name": "Tech"
+    }
+Update:
+http://localhost:3000/categories/1
+JSON:
+{
+    "name": "Biology"
+}
+Delete:
+http://localhost:3000/categories/1
+
+PostRouter:
+create:
+http://localhost:3000/posts
+JSON:
+{
+    "title": "Shocking news, Biedrusko twice as big as Gaza Strip!!!",
+    "content": "Recent reports from Adam S. prove that Biedrusko is bigger.",
+    "categoryId": 2
+}
+
+{
+    "title": "Example",
+    "content": "This is some text",
+    "categoryId": 2
+}
+update:
+http://localhost:3000/posts/2
+{
+    "title": "New Title",
+    "content": "This is some text, more text",
+    "categoryId": 2
+}
+delete:
+http://localhost:3000/posts/2
+
+CommentRouter:
+
+create:
+
+
+
