@@ -29,6 +29,10 @@ JSON:
     {
         "name": "Tech"
     }
+
+    {
+        "name": "News"
+    }
 Update:
 http://localhost:3000/categories/1
 JSON:
@@ -51,7 +55,7 @@ JSON:
 {
     "title": "Example",
     "content": "This is some text",
-    "categoryId": 2
+    "categoryId": 1
 }
 update:
 http://localhost:3000/posts/2
@@ -66,6 +70,20 @@ http://localhost:3000/posts/2
 CommentRouter:
 
 create:
+{
+    "content": "That's big!",
+    "postId": 1
+}
+
+update:
+http://localhost:3000/comments/1
+
+{
+    "content": "IDK",
+}
+
+delete:
+http://localhost:3000/comments/1
 
 
 
