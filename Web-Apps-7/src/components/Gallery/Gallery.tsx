@@ -1,3 +1,5 @@
+import "./Gallery.scss"
+
 function Profile() {
     return (
         <img
@@ -10,7 +12,8 @@ function Profile() {
 export default function Gallery() {
     return (
         <section>
-            <h1>Amazing scientists</h1>
+            <h1 className='header'>Amazing scientists</h1>
+    <Profile />
     <Profile />
     <Profile />
     <Profile />
