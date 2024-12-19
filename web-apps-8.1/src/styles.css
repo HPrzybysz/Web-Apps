@@ -2,6 +2,7 @@
   box-sizing: border-box;
 }
 body{
+  background: #ecd2d2;
   margin: 0;
   padding: 0;
 }
@@ -19,7 +20,7 @@ nav ul li a{
   text-decoration: none;
   color: black;
   padding: 5px;
-  border: 10px dashed white;
+  border: 5px dashed white;
   border-radius: 50%;
 }
 nav ul li a:hover{
