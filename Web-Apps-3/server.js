@@ -36,7 +36,7 @@ const requestListener = (req, res) => {
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Dynamiczny HTML</title>
+                <title>HTML</title>
             </head>
             <body>
                 <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h1>
@@ -89,20 +89,19 @@ const requestListener = (req, res) => {
         });
 
     } else {
-
         const filePath = path.join(__dirname, 'assets', pathname);
 
         fs.stat(filePath, (err, stats) => {
             if (err || !stats.isFile()) {
                 res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
-                res.end(JSON.stringify({error: "Plik nie znaleziony"}));
-            }else  {
+                res.end(JSON.stringify({ error: "Plik nie znaleziony" }));
+            } else {
                 const mimeType = mime.getType(filePath);
-                res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
+                res.writeHead(200, { 'Content-Type': mimeType });
 
                 fs.createReadStream(filePath).pipe(res);
             }
-        })
+        });
     }
 };
 

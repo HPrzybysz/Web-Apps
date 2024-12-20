@@ -2,7 +2,9 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const url = require('url');
-const mime = require('mime');
+(async () => {
+    const mime = await import('mime');
+})();
 
 const requestListener = (req, res) => {
     const parsedUrl = url.parse(req.url, true);
@@ -19,7 +21,7 @@ const requestListener = (req, res) => {
 
         res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
         const jsonResponse = {
-            message: 'To jest przykładowy dokument JSON',
+            message: 'JSON',
             data: [1, 2, 3, 4],
             status: 'sukces'
         };
@@ -35,7 +37,7 @@ const requestListener = (req, res) => {
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Dynamiczny HTML</title>
+                <title>HTML</title>
             </head>
             <body>
                 <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h1>
@@ -51,7 +53,7 @@ const requestListener = (req, res) => {
         fs.readFile(filePath, 'utf-8', (err, data) => {
             if (err) {
                 res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
-                res.end('Błąd serwera: Nie można odczytać pliku HTML.');
+                res.end('Błąd serwera');
             } else {
                 res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
                 res.end(data);

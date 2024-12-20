@@ -7,19 +7,19 @@ const requestListener = (req, res) => {
 
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
 
-    if (url === '/1') {
+    if (url === '/') {
         // Strona główna
         res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
         res.end('Strona główna');
-    } else if (url === '/2') {
+    } else if (url === '/json') {
         res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
         const jsonResponse = {
-            name: "John Doe",
-            city: "Radom",
-            state: "powodz"
+            message: 'JSON',
+            data: [1, 2, 3, 4],
+            status: 'sukces'
         };
         res.end(JSON.stringify(jsonResponse));
-    } else if (url === '/3') {
+    } else if (url === '/html') {
         res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
         res.end(`
             <!DOCTYPE html>
@@ -27,15 +27,15 @@ const requestListener = (req, res) => {
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Strona</title>
+                <title>HTML</title>
             </head>
             <body>
-                <h1>Styrta sie pali</h1>
-                <p>Łączna 43</p>
+                <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias consequuntur culpa cum eius et in quasi qui voluptate. Commodi iste officia recusandae rem suscipit tempore. Ab distinctio facilis iste nostrum!</p>
             </body>
             </html>
         `);
-    } else if (url === '/4') {
+    } else if (url === '/html-file') {
         const filePath = path.join(__dirname, 'index.html');
         fs.readFile(filePath, 'utf-8', (err, data) => {
             if (err) {
