@@ -76,7 +76,7 @@ app.get('/api/contact-messages', (req, res) => {
     })
 })
 
-app.get('/api/messages/:id', (req, res) => {
+app.get('/api/contact-messages/:id', (req, res) => {
     const id = req.params.id;
     const query = 'SELECT * FROM messages WHERE id = ?';
     db.query(query, [id], (err, results) => {

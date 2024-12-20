@@ -2,11 +2,15 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: beige;
+}
+
+h1 {
+    text-align: center;
 }
 
 header {
-    background-color: #333;
+    background-color: #3f8ae0;
     color: white;
     padding: 10px 0;
     text-align: center;
@@ -15,6 +19,7 @@ header {
 nav ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 nav ul li {
@@ -30,7 +35,7 @@ nav ul li a {
 footer {
     text-align: center;
     padding: 10px;
-    background-color: #333;
+    background-color: #1976d2;
     color: white;
     position: fixed;
     width: 100%;
@@ -39,41 +44,38 @@ footer {
 
 table, td, th {
     border-collapse: collapse;
-    border: 1px solid black;
+    border: 1px dashed black;
     padding: 10px;
 }
 
-.box p{
-    width: 100%;
-    text-align: center;
-}
-
-.box{
+.box {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-
-
-h1 {
-    color: #333;
+.box p {
+    width: 100%;
+    text-align: center;
 }
-.images{
+
+.images {
     padding: 10px;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: auto;
     gap: 1rem;
 }
+
 .images img {
-    width: 200px;
+    width: 300px;
     height: auto;
     margin: 10px;
 }
-.h1-style{
-    text-align: center;
-}
-.form{
+
+
+.form {
     display: flex;
     justify-content: center;
 }
