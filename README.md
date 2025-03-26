@@ -12,3 +12,6 @@
 | 05.12.2024              | Web-Apps-8.1 |
 | 12.12.2024              | Web-Apps-9   |
 | 19.12.2024              | Web-Apps-10  |
+| 03.02.2025              | Web-Apps-11  |
+| 10.02.2025              | Web-Apps-12  |
+| Python - zadania        | Python       |

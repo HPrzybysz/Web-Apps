@@ -1,0 +1,22 @@
+$background-color: #f4f4f4;
+$text-color: #333;
+$link-color: #007bff;
+
+.header {
+  background-color: $link-color;
+  color: white;
+  padding: 1rem;
+
+  .header-title {
+    margin: 0;
+  }
+
+  .header-nav a {
+    margin-right: 1rem;
+    color: white;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
