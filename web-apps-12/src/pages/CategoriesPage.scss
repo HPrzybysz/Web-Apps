@@ -64,7 +64,7 @@ $link-color: #007bff;
       cursor: pointer;
 
       &:hover {
-        background: darken($link-color, 10%);
+        background: $link-color
       }
 
       &:disabled {

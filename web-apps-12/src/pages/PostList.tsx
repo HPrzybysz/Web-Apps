@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import { fetchPosts } from '../api';
+import './PostList.scss';
 
 const PostList: React.FC = () => {
     const { data: posts, isLoading, error } = useQuery({
@@ -9,8 +10,8 @@ const PostList: React.FC = () => {
         queryFn: fetchPosts,
     });
 
-    if (isLoading) return <div>Loading posts...</div>;
-    if (error) return <div>Error loading posts</div>;
+    if (isLoading) return <div className="loading">Loading posts...</div>;
+    if (error) return <div className="error">Error loading posts: {error instanceof Error ? error.message : 'Unknown error'}</div>;
 
     return (
         <div className="posts-list">
@@ -18,12 +19,12 @@ const PostList: React.FC = () => {
             {posts?.length ? (
                 <ul>
                     {posts.map((post) => (
-                        <li key={post.id}>
+                        <li key={post.id} className="post-item">
                             <h3>
                                 <Link to={`/post/${post.id}`}>{post.title}</Link>
                             </h3>
-                            <p>{post.content.substring(0, 100)}...</p>
-                            <p>Posted on: {new Date(post.createdAt).toLocaleDateString()}</p>
+                            <p className="post-excerpt">{post.body.substring(0, 100)}...</p>
+                            <p className="post-meta">User ID: {post.userId} | Post ID: {post.id}</p>
                         </li>
                     ))}
                 </ul>

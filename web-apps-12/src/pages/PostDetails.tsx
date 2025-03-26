@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useQuery, useMutation, useQueryClient, QueryClient } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { fetchPost, fetchComments, addComment } from '../api';
 import './PostDetails.scss';
 
@@ -8,31 +8,35 @@ const PostDetails: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const queryClient = useQueryClient();
     const [newComment, setNewComment] = useState({
-        author: '',
-        content: ''
+        name: '',
+        body: '',
+        email: ''
     });
 
+    // Fetch post data
     const { data: post, isLoading, error } = useQuery({
         queryKey: ['post', id],
         queryFn: () => fetchPost(id!),
     });
 
+    // Fetch comments
     const { data: comments, isLoading: commentsLoading } = useQuery({
         queryKey: ['comments', id],
         queryFn: () => fetchComments(id!),
     });
 
-    const { mutate: addNewComment, isPending: isAddingComment, isError: isCommentError, error: commentError } = useMutation({
+    // Add comment mutation
+    const { mutate: addNewComment, isPending: isAddingComment, isError, error: commentError } = useMutation({
         mutationFn: () => addComment(id!, newComment),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['comments', id] });
-            setNewComment({ author: '', content: '' });
+            setNewComment({ name: '', body: '', email: '' });
         },
     });
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (newComment.author.trim() && newComment.content.trim()) {
+        if (newComment.name.trim() && newComment.body.trim()) {
             addNewComment();
         }
     };
@@ -50,8 +54,8 @@ const PostDetails: React.FC = () => {
         <div className="post-details">
             <article className="post-content">
                 <h1>{post.title}</h1>
-                <p className="post-meta">Posted on: {new Date(post.createdAt).toLocaleDateString()}</p>
-                <p className="post-body">{post.content}</p>
+                <p className="post-meta">Post ID: {post.id} | User ID: {post.userId}</p>
+                <p className="post-body">{post.body}</p>
             </article>
 
             <section className="comments-section">
@@ -63,11 +67,8 @@ const PostDetails: React.FC = () => {
                     <ul className="comments-list">
                         {comments?.map(comment => (
                             <li key={comment.id} className="comment">
-                                <p className="comment-author">{comment.author}</p>
-                                <p className="comment-date">
-                                    {new Date(comment.createdAt).toLocaleDateString()}
-                                </p>
-                                <p className="comment-text">{comment.content}</p>
+                                <p className="comment-author">{comment.name} ({comment.email})</p>
+                                <p className="comment-text">{comment.body}</p>
                             </li>
                         ))}
                     </ul>
@@ -77,23 +78,34 @@ const PostDetails: React.FC = () => {
                     <h3>Add a comment</h3>
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
-                            <label htmlFor="author">Your name:</label>
+                            <label htmlFor="name">Your name:</label>
                             <input
                                 type="text"
-                                id="author"
-                                name="author"
-                                value={newComment.author}
+                                id="name"
+                                name="name"
+                                value={newComment.name}
                                 onChange={handleInputChange}
                                 required
                                 minLength={2}
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="content">Your comment:</label>
+                            <label htmlFor="email">Your email:</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                value={newComment.email}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="body">Your comment:</label>
                             <textarea
-                                id="content"
-                                name="content"
-                                value={newComment.content}
+                                id="body"
+                                name="body"
+                                value={newComment.body}
                                 onChange={handleInputChange}
                                 required
                                 minLength={10}
@@ -107,7 +119,7 @@ const PostDetails: React.FC = () => {
                         >
                             {isAddingComment ? 'Posting...' : 'Post Comment'}
                         </button>
-                        {isCommentError && (
+                        {isError && (
                             <p className="error-message">
                                 Error: {commentError instanceof Error ? commentError.message : 'Failed to post comment'}
                             </p>
