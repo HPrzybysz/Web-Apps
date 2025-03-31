@@ -1,4 +1,4 @@
-# Mobile-Apps
+# Web-Apps
 
 | Zadanie                 | Folder       |
 |-------------------------|--------------|
