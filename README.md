@@ -15,3 +15,4 @@
 | 03.02.2025              | Web-Apps-11  |
 | 10.02.2025              | Web-Apps-12  |
 | Python - zadania        | Python       |
+| Django                  | Zad_library  |
